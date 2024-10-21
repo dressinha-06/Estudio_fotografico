@@ -73,11 +73,10 @@ class SessaoFotografica:
         conexao = self.conexao()
         consulta = conexao.cursor()
 
-        print("1-Cliente\n2-Data\n3-Tipo\n4-Preço\n")
-        esc = input("O que você deseja atualizar?")
+        print(" 1-Cliente\n 2-Data\n 3-Tipo\n 4-Preço\n")
+        esc = input("O que você deseja atualizar? ")
 
-        if esc == "cliente" or "Cliente":
-
+        if esc == "1":
             cliente = input("Informe o novo nome do cliente: ")
             id = int(input("Informe o ID da sessão: "))
 
@@ -93,7 +92,7 @@ class SessaoFotografica:
 
             conexao.close()
 
-        
+        if esc == "2":
             data = input("Informe a nova data: ")
             id = int(input("Informe o ID da sessão: "))
 
@@ -109,5 +108,39 @@ class SessaoFotografica:
 
             conexao.close()
 
-    
+        if esc == "3":
+            tipo = input("Informe qual o tipo da sessão: ")
+            id = int(input("Informe o ID da sessão: "))
+
+            sql = "UPDATE sessoes SET tipo = ? WHERE id = ?"
+
+            campos = (tipo, id)
+
+            consulta.execute(sql, campos)
+
+            conexao.commit()
+
+            print(consulta.rowcount, "linha atualizada com sucesso")
+
+            conexao.close()
+
+        if esc == "4":
+            preco = input("Informe o novo preço da sessão: ")
+            id = int(input("Informe o ID da sessão: "))
+
+            sql = "UPDATE sessoes SET preco = ? WHERE id = ?"
+
+            campos = (preco, id)
+
+            consulta.execute(sql, campos)
+
+            conexao.commit()
+
+            print(consulta.rowcount, "linha atualizada com sucesso")
+
+            conexao.close()
+
+
+        
+
     
